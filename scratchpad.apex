@@ -1,0 +1,15 @@
+List<String> licenseGroups = New List<String>{'Salesforce', 'Salesforce Platform'};
+List<UserLicense> licenseTypes = [SELECT Id, Name, Status, LicenseDefinitionKey from UserLicense  ];
+System.Debug(licenseTypes);
+List<Profile> profiles = [SELECT Name, UserType, UserLicenseId FROM Profile  ]; 
+System.Debug(profiles);
+List<AppMenuItem> apps = [SELECT ApplicationId,Id,IsAccessible,IsVisible,Label,Name,Type FROM AppMenuItem WHERE Type='TabSet'];
+System.Debug('>>> apps: ' + apps);
+CustomAppInventoryUtility appInventoryTool = new CustomAppInventoryUtility();
+System.Debug('========================================');
+System.Debug(appInventoryTool.getPlatformLicenses());
+System.Debug('========================================');
+System.Debug(appInventoryTool.retrievePlatformProfiles());
+System.Debug('========================================');
+System.Debug(appInventoryTool.retrievePopulatedPlatformProfiles());
+System.Debug('========================================');
